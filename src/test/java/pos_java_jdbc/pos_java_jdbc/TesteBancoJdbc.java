@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.sun.jna.platform.win32.Netapi32Util.User;
+
 import dao.UserPosDao;
 import model.Userposjava;
 
@@ -14,8 +16,7 @@ public class TesteBancoJdbc {
 		UserPosDao userPosDao = new UserPosDao();
 		Userposjava userPosJava = new Userposjava();
 
-		userPosJava.setId(8L);
-		userPosJava.setNome("carlos");
+		userPosJava.setNome("carlos..");
 		userPosJava.setEmail("carlos@gmail.com");
 		userPosDao.salva(userPosJava);
 	}
@@ -57,11 +58,21 @@ public class TesteBancoJdbc {
 			Userposjava objetoBanco = dao.buscar(3L);
 			objetoBanco.setNome("Nome mudado com metodo atualizar ");
 			dao.atualizar(objetoBanco);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 
+	}
+
+	@Test
+	public void initDeletar() {
+		try {
+			UserPosDao dao = new UserPosDao();
+			dao.deletar(3L);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 }
